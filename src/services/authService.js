@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://ripe-donella-atitus-fbbf314a.koyeb.app/auth';
+
+const API_URL = 'http://localhost:8081/auth';
 
 export async function signIn(email, password) {
   try {

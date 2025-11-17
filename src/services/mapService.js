@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://ripe-donella-atitus-fbbf314a.koyeb.app/ws/point';
-
+const BASE_URL = 'http://localhost:8081/ws/point';
 
 
 export async function getPoints(token) {
@@ -45,10 +44,10 @@ export async function getPoints(token) {
     };
     */
 
-    // o objeto response.data possui os campos latitude e longitude mas precisamos mudar os nomes para lat lng
+    
     const points = response.data.map(point => ({
       id: point.id,
-      title: point.descricao,
+      title: point.description, 
       position: {
         lat: point.latitude,
         lng: point.longitude,
