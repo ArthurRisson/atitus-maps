@@ -1,82 +1,104 @@
 import React, { useState } from "react";
-import { Navbar, Logo, Title, Input, Button } from "../components";
+import { Title, Input, Button } from "../components"; // Removi Navbar e Logo componente, mantive Title se precisar, mas usaremos a img
 import { Link, useNavigate } from "react-router-dom";
 import { signUp } from "../services/authService";
+import logo from "../assets/logo.png"; // Importando a imagem igual na Login
 
 export function Register() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
-    const [erro, setErro] = useState("");
-    const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [erro, setErro] = useState("");
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setErro("");
-        try {
-            await signUp(name, email, senha);
-            navigate("/login");
-        } catch (err) {
-            setErro(err.message);
-        }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErro("");
+    try {
+      await signUp(name, email, senha);
+      navigate("/login");
+    } catch (err) {
+      setErro(err.message);
+    }
+  };
 
-    return (
-        <>
-            <div className="max-w-md mx-auto p-4">
-                <div className="text-center">
-                    <Logo />
-                </div>
+  return (
+    <div className="min-h-screen flex flex-col justify-center items-center p-4">
+      <div className="max-w-md w-full">
+        
+        {/* Seção da Logo - Ajustei a margem inferior (mb-10) para caber os 3 inputs sem esticar demais */}
+        <div className="mt-10 mb-10 text-center">
+          <img
+            src={logo}
+            alt="Logo Consultas"
+            className="mx-auto w-72 mt-10"
+          />
+        </div>
 
-                <div className="pt-6 pb-4">
-                    <Title title="Bem-vindo de volta" />
-                </div>
+        <form onSubmit={handleSubmit}>
+          {/* Input Nome */}
+          <div className="mb-6">
+            <Input
+              label="Nome"
+              placeholder="Digite seu nome..."
+              type="text"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
 
-                <form onSubmit={handleSubmit}>
-                    <div className="pb-4">
-                        <Input
-                            label="Nome"
-                            placeholder="Digite seu nome..."
-                            type="text"
-                            required
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                        />
-                    </div>
-                    <div className="pb-4">
-                        <Input
-                            label="Email"
-                            placeholder="Digite seu email..."
-                            type="email"
-                            required
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className="pb-4">
-                        <Input
-                            label="Senha"
-                            placeholder="Digite sua senha..."
-                            type="password"
-                            required
-                            value={senha}
-                            onChange={e => setSenha(e.target.value)}
-                        />
-                    </div>
+          {/* Input Email */}
+          <div className="mb-6">
+            <Input
+              label="Email"
+              placeholder="Digite seu email..."
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-                    {erro && <p style={{ color: "red" }}>{erro}</p>}
+          {/* Input Senha */}
+          <div className="mb-6">
+            <Input
+              label="Senha"
+              placeholder="Digite sua senha..."
+              type="password"
+              required
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+            />
+          </div>
 
-                    <div className="text-center pt-4">
-                        <Button type="submit">Cadastrar</Button>
-                    </div>
-                </form>
+          {erro && (
+            <p className="text-red-500 text-center mb-4">{erro}</p>
+          )}
 
-                <div className="text-center pt-8">
-                    <Link to="/login" className="text-blue-600 hover:underline">
-                        Já tem cadastro? <strong>Faça Login</strong>
-                    </Link>
-                </div>
-            </div>
-        </>
-    );
+          {/* Botão igual ao Login */}
+          <div className="text-center pt-4">
+            <Button
+              type="submit"
+              className="w-64 text-xl py-3 bg-blue-800 hover:bg-blue-600 text-white transition-all rounded-lg"
+            >
+              Cadastrar
+            </Button>
+          </div>
+        </form>
+
+        {/* Link do rodapé ajustado */}
+        <div className="text-center pt-8 text-gray-600">
+          Já tem cadastro?{' '}
+          <Link 
+            to="/login" 
+            className="text-blue-600 hover:underline font-medium"
+          >
+            Faça Login
+          </Link>
+        </div>
+
+      </div>
+    </div>
+  );
 }
