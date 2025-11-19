@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Title, Input, Button } from "../components"; // Removi Navbar e Logo componente, mantive Title se precisar, mas usaremos a img
+import { Title, Input, Button } from "../components"; 
 import { Link, useNavigate } from "react-router-dom";
 import { signUp } from "../services/authService";
-import logo from "../assets/logo.png"; // Importando a imagem igual na Login
+import logo from "../assets/logo.png"; 
 
 export function Register() {
   const [name, setName] = useState("");
@@ -26,7 +26,7 @@ export function Register() {
     <div className="min-h-screen flex flex-col justify-center items-center p-4">
       <div className="max-w-md w-full">
         
-        {/* Seção da Logo - Ajustei a margem inferior (mb-10) para caber os 3 inputs sem esticar demais */}
+        
         <div className="mt-10 mb-10 text-center">
           <img
             src={logo}
@@ -36,7 +36,7 @@ export function Register() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          {/* Input Nome */}
+          
           <div className="mb-6">
             <Input
               label="Nome"
@@ -48,7 +48,7 @@ export function Register() {
             />
           </div>
 
-          {/* Input Email */}
+          
           <div className="mb-6">
             <Input
               label="Email"
@@ -60,7 +60,7 @@ export function Register() {
             />
           </div>
 
-          {/* Input Senha */}
+          
           <div className="mb-6">
             <Input
               label="Senha"
@@ -76,7 +76,7 @@ export function Register() {
             <p className="text-red-500 text-center mb-4">{erro}</p>
           )}
 
-          {/* Botão igual ao Login */}
+          
           <div className="text-center pt-4">
             <Button
               type="submit"
@@ -87,7 +87,7 @@ export function Register() {
           </div>
         </form>
 
-        {/* Link do rodapé ajustado */}
+        
         <div className="text-center pt-8 text-gray-600">
           Já tem cadastro?{' '}
           <Link 

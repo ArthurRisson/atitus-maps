@@ -1,9 +1,12 @@
-import "./logo.css";
+import logoImg from "../../assets/logo.png"; 
 
-export const Logo = () => {
+export const Logo = ({ className = "" }) => {
   return (
-    <div className="logo">
-      <div className="text-wrapper">Logotipo</div>
-    </div>
+    <img
+      src={logoImg}
+      alt="Logo Mais Consultas"
+     
+      className={`w-auto ${className}`}
+    />
   );
 };
